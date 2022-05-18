@@ -20,4 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('task2&date={date}&status={status}&location={location}', [\App\Http\Controllers\ApiController::class,'task2']);
 
-
+Route::get('task3&location={location}', [\App\Http\Controllers\ApiController::class,'task3']);

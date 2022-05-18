@@ -19,10 +19,17 @@ class ApiController extends Controller
             ['location_id','=',$location],
         ])->with('invoiceLines')->get();
 
-
         return InvoiceHeaderResource::collection($invoiceHeaders);
 
     }
 
+    public function task3($location){
 
+        return DB::table('invoice_headers')
+            ->leftJoin('invoice_lines', 'invoice_headers.id', '=', 'invoice_lines.invoice_header_id')
+            ->where('location_id','=',$location)
+            ->selectRaw('SUM(value) as value_sum, status')
+            ->groupBy('status')
+            ->get();
+    }
 }
